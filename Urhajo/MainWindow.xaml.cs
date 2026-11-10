@@ -54,5 +54,53 @@ namespace Urhajo
         {
             InitializeComponent();
         }
+
+        private void Betolt(object sender, RoutedEventArgs e)
+        {
+            datagrid.ItemsSource = urhajok;
+            datagrid.Items.Refresh();
+        }
+
+        private void Osszesurhajo(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Összesen {urhajok.Count()} űrhajó van");
+        }
+
+        private void legnagyobbhatotav(object sender, RoutedEventArgs e)
+        {
+            var legnagyobb = urhajok.OrderByDescending(u => u.MaxHatotav).Take(1);
+            datagrid.ItemsSource = legnagyobb;
+        }
+
+        private void Sikeresek(object sender, RoutedEventArgs e)
+        {
+            datagrid.ItemsSource = urhajok.Where(u => u.KuldetesStatusz.ToLower() == "sikeres").ToList();
+        }
+
+        private void Atlaglegenyseg(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Átlagos legénységszám: {urhajok.Average(u => u.Legenyseg)} fő");
+        }
+
+        private void Gyartokszerint(object sender, RoutedEventArgs e)
+        {
+            datagrid.ItemsSource = urhajok.OrderBy(u => u.Gyarto);
+        }
+
+        private void Nevkereses(object sender, RoutedEventArgs e)
+        {
+            datagrid.ItemsSource = urhajok.Select (u => new {Nev = u.Nev});
+        }
+
+        private void selectchange(object sender, SelectionChangedEventArgs e)
+        {
+            progressbar.Maximum = urhajok.Max(u => u.UzemenyagSzint);
+            progressbar.Minimum = 0;
+            Urhajo selected = ((Urhajo)datagrid.SelectedItem);
+            if (selected != null)
+            {
+                progressbar.Value = selected.UzemenyagSzint;
+            }
+        }
     }
 }

@@ -11,18 +11,19 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Column="0">
-            <Button Width="250" Height="30" Margin="10" Content="Adatok betöltése"/>
-            <Button Width="250" Height="30" Margin="10" Content="Hány űrhajó van?"/>
-            <Button Width="250" Height="30" Margin="10" Content="Legnagyobb hatótáv?"/>
-            <Button Width="250" Height="30" Margin="10" Content="Kik voltak sikeres küldetésen?"/>
-            <Button Width="250" Height="30" Margin="10" Content="Átlagos legénységszám"/>
-            <Button Width="250" Height="30" Margin="10" Content="Gyártók szerinti csoportosítás"/>
-            <Button Width="250" Height="30" Margin="10" Content="Keresés név alapján"/>
+        <StackPanel Orientation="Vertical" Grid.Column="0" Background="DarkBlue">
+            <Label Content="Űrhajó műveletek" FontSize="20"/>
+            <Button Width="250" Height="30" Margin="10" Content="Adatok betöltése" Click="Betolt"/>
+            <Button Width="250" Height="30" Margin="10" Content="Hány űrhajó van?" Click="Osszesurhajo"/>
+            <Button Width="250" Height="30" Margin="10" Content="Legnagyobb hatótáv?" Click="legnagyobbhatotav"/>
+            <Button Width="250" Height="30" Margin="10" Content="Kik voltak sikeres küldetésen?" Click="Sikeresek"/>
+            <Button Width="250" Height="30" Margin="10" Content="Átlagos legénységszám" Click="Atlaglegenyseg"/>
+            <Button Width="250" Height="30" Margin="10" Content="Gyártók szerinti csoportosítás" Click="Gyartokszerint"/>
+            <Button Width="250" Height="30" Margin="10" Content="Keresés név alapján" Click="Nevkereses"/>
             <ProgressBar x:Name="progressbar" Width="250" Height="20" Margin="15" />
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <DataGrid x:Name="datagrid"  Margin="5" MaxHeight="200" SelectionChanged="selectchange"/>
+            <DataGrid x:Name="datagrid"  Margin="5" MaxHeight="200" SelectionChanged="selectchange" />
         </StackPanel>
     </Grid>
 </Window>
